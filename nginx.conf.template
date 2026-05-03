@@ -1,0 +1,23 @@
+server {
+    listen ${PORT};
+    server_name localhost;
+
+    # Gzip compression for better performance
+    gzip on;
+    gzip_types text/plain text/css application/json application/javascript text/xml application/xml+rss text/javascript;
+    gzip_min_length 1000;
+
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+        # Fallback to index.html for React SPA routine
+        try_files $uri $uri/ /index.html;
+    }
+
+    # Cache static assets
+    location ~* \.(?:css|js|jpg|svg|png|gif|ico|webp)$ {
+        root   /usr/share/nginx/html;
+        expires 1y;
+        add_header Cache-Control "public, max-age=31536000, immutable";
+    }
+}

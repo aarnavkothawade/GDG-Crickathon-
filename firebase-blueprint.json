@@ -1,0 +1,44 @@
+{
+  "entities": {
+    "MatchPlaybook": {
+      "title": "Match Playbook",
+      "description": "Strategic advice for specific venues or matches",
+      "type": "object",
+      "properties": {
+        "venue": { "type": "string", "description": "Name of the stadium/venue" },
+        "strategy": { "type": "string", "description": "The full strategic output from the AI" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "authorId": { "type": "string" }
+      },
+      "required": ["venue", "strategy", "createdAt"]
+    },
+    "Challenge": {
+      "title": "1v1 Challenge",
+      "description": "A head-to-head challenge between two users",
+      "type": "object",
+      "properties": {
+        "creatorId": { "type": "string" },
+        "creatorName": { "type": "string" },
+        "creatorSquad": { "type": "array" },
+        "opponentId": { "type": "string" },
+        "opponentName": { "type": "string" },
+        "opponentSquad": { "type": "array" },
+        "status": { "type": "string", "enum": ["pending", "active", "completed"] },
+        "winnerId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "penaltyShared": { "type": "boolean" }
+      },
+      "required": ["creatorId", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/match_playbooks/{playbookId}": {
+      "schema": "MatchPlaybook",
+      "description": "Collection of strategic playbooks"
+    },
+    "/challenges/{challengeId}": {
+      "schema": "Challenge",
+      "description": "Collection of 1v1 challenges"
+    }
+  }
+}

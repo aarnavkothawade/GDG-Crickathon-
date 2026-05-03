@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  --color-stadium-red: #D71920;
+  --color-championship-gold: #FFD700;
+  --color-deep-charcoal: #121212;
+  
+  --font-display: "Outfit", "Inter", sans-serif;
+  
+  --shadow-gold: 0 0 15px rgba(255, 215, 0, 0.3);
+  --shadow-red: 0 0 20px rgba(215, 25, 32, 0.5);
+}
+
+@layer base {
+  body {
+    @apply bg-deep-charcoal text-white font-sans antialiased overflow-hidden;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+  }
+  
+  .glass-card {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-xl;
+  }
+
+  .pitch-container {
+    perspective: 1200px;
+  }
+
+  .pitch-surface {
+    transform: rotateX(25deg);
+    transform-style: preserve-3d;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
